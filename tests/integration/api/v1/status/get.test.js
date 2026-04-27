@@ -7,7 +7,9 @@ test("GET to /api/v1/status should return 200", async () => {
   const parsedUpdatedAt = new Date(responseBody.updated_at).toISOString(); //Aqui é criado uma variável "parsedUpdatedAt" que gera a data de hoje no formato ISO 8601. E o motivo disso está na linha de baixo
   expect(responseBody.updated_at).toEqual(parsedUpdatedAt); //Nessa linha ele compara e espera que a váriavel updateAt do index.js seja igual a variável criada na linha de cima.
 
-  //expect(responseBody.dependecies.database.version).toEqual("16.13");
+  expect(responseBody.dependencies.database.version).toEqual("16.13");
+  expect(responseBody.dependencies.database.max_connections).toEqual(100);
+  expect(responseBody.dependencies.database.opened_connections).toEqual(1);
   //Minha explicação pode não estar exata, mas é uma forma simplificada de como interpretar o texto, então algumas formas podem estar simples demais, beirando estar errado.
   //O objetivo na verdade não era estar certo mas sim, explicar para alguém que não entende, como eu entendi :D
 });
